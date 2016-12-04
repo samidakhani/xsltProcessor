@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Writer;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -41,10 +42,10 @@ public class ResourceUtils {
 	public static void writeResource(final String content,
 			final String filename) {
 
-		try (FileWriter fw = new FileWriter(filename);
-				BufferedWriter bw = new BufferedWriter(fw)) {
+		try (Writer writer = new FileWriter(filename);
+				BufferedWriter bWriter = new BufferedWriter(writer)) {
 
-			bw.write(content);
+			bWriter.write(content);
 
 		} catch (IOException ex) {
 			LOGGER.error("Error while writing to output file " + filename, ex);

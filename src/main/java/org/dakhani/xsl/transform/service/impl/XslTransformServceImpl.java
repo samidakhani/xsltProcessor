@@ -47,27 +47,31 @@ public class XslTransformServceImpl implements XslTransformService {
 			String xslContent = ResourceUtils
 					.readResource(request.getXslFileName());
 
-			InputStream xmlStream = IOUtils.toInputStream(xmlContent);
-			InputStream xsltStream = IOUtils.toInputStream(xslContent);
-			LOGGER.info("Xml and xsl file loaded");
+			try (InputStream xmlStream = IOUtils.toInputStream(xmlContent);
+					InputStream xsltStream = IOUtils
+							.toInputStream(xslContent)) {
 
-			Source xmlSource = new StreamSource(xmlStream);
-			Source xsltSource = new StreamSource(xsltStream);
-			ByteArrayOutputStream fOStream = new ByteArrayOutputStream();
+				LOGGER.info("Xml and xsl file loaded");
 
-			TransformerFactory factory = TransformerFactory.newInstance();
-			Transformer transformer = factory.newTransformer(xsltSource);
-			transformer.transform(xmlSource, new StreamResult(fOStream));
+				Source xmlSource = new StreamSource(xmlStream);
+				Source xsltSource = new StreamSource(xsltStream);
+				ByteArrayOutputStream fOStream = new ByteArrayOutputStream();
 
-			transformedResult = this.trim(fOStream.toString());
-			LOGGER.info("Resulting transformation generated");
+				TransformerFactory factory = TransformerFactory.newInstance();
+				Transformer transformer = factory.newTransformer(xsltSource);
+				transformer.transform(xmlSource, new StreamResult(fOStream));
 
-		} catch (TransformerException e) {
+				transformedResult = this.trim(fOStream.toString());
+				LOGGER.info("Resulting transformation generated");
+			}
+
+		} catch (TransformerException | IOException e) {
 			LOGGER.error("Error while transforming xml file", e);
 		}
 
 		response.setTransformResult(transformedResult);
-		response.setFileSize(transformedResult.length());
+		response.setFileSize(
+				transformedResult != null ? transformedResult.length() : 0);
 
 		return response;
 
@@ -79,18 +83,19 @@ public class XslTransformServceImpl implements XslTransformService {
 	 * @param text
 	 * @return
 	 */
-	private String trim(final String text) {
+	private String trim(final String content) {
 
-		String line = null;
-		Reader reader = new StringReader(text);
-		BufferedReader buffReader = new BufferedReader(reader);
 		StringBuffer result = new StringBuffer();
 
-		try {
-			while ((line = buffReader.readLine()) != null)
-				result.append(line.trim());
-		} catch (IOException e) {
+		try (Reader reader = new StringReader(content);
+				BufferedReader bReader = new BufferedReader(reader)) {
 
+			String line = null;
+			while ((line = bReader.readLine()) != null)
+				result.append(line.trim());
+
+		} catch (Exception e) {
+			LOGGER.error("Error while removing spaces", e);
 		}
 
 		return result.toString();
