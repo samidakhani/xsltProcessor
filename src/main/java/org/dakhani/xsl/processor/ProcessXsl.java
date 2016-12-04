@@ -26,7 +26,7 @@ public class ProcessXsl {
 		}
 
 		if (!"-xml".equals(args[0]) && !"-xsl".equals(args[2])) {
-			LOGGER.error("Please specify:");
+			LOGGER.error("Please specify: ");
 			LOGGER.error("-xml followed by absolute path to xml file and");
 			LOGGER.error("-xsl followed by absolute path to xsl file");
 			return;
@@ -45,13 +45,15 @@ public class ProcessXsl {
 
 		if (args.length > 4) {
 
-			if (args.length != 6) {
+			if (!"-r".equals(args[4])) {
 				LOGGER.error(
-						"Please specify -r followed by absolute path to result file");
-			} else {
-				String transformFileName = args[5];
-				ResourceUtils.writeResource(transformResult, transformFileName);
+						"Please specify - r followed by absolute path to output file");
+				return;
 			}
+
+			String transformFileName = args[5];
+			ResourceUtils.writeResource(transformResult, transformFileName);
+			LOGGER.info("Output file generated: " + transformFileName);
 
 		} else {
 			LOGGER.info("Transformation:");
