@@ -1,10 +1,10 @@
 package org.dakhani.xsl.processor;
 
 import org.dakhani.xsl.processor.util.ResourceUtils;
-import org.dakhani.xsl.transform.XslTransform;
 import org.dakhani.xsl.transform.dto.request.TransformRequest;
 import org.dakhani.xsl.transform.dto.response.TransformResponse;
-import org.dakhani.xsl.transform.impl.XslTransformImpl;
+import org.dakhani.xsl.transform.service.XslTransformService;
+import org.dakhani.xsl.transform.service.impl.XslTransformServceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,7 +39,7 @@ public class ProcessXsl {
 		request.setXmlFileName(xmlFileName);
 		request.setXslFileName(xslFileName);
 
-		XslTransform transform = new XslTransformImpl();
+		XslTransformService transform = new XslTransformServceImpl();
 		TransformResponse response = transform.transformXml(request);
 		String transformResult = response.getTransformResult();
 

@@ -1,4 +1,4 @@
-package org.dakhani.xsl.transform;
+package org.dakhani.xsl.transform.service;
 
 import javax.validation.constraints.NotNull;
 
@@ -9,7 +9,7 @@ import org.dakhani.xsl.transform.dto.response.TransformResponse;
  * @author Sami Dakhani Created on Dec 4, 2016
  *
  */
-public interface XslTransform {
+public interface XslTransformService {
 
 	/**
 	 * Transform a xml using xsl-style_sheet
