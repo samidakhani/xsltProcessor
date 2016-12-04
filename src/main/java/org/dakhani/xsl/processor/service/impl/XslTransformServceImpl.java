@@ -1,4 +1,4 @@
-package org.dakhani.xsl.transform.service.impl;
+package org.dakhani.xsl.processor.service.impl;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -15,10 +15,10 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import org.apache.commons.io.IOUtils;
+import org.dakhani.xsl.processor.dto.request.TransformRequest;
+import org.dakhani.xsl.processor.dto.response.TransformResponse;
+import org.dakhani.xsl.processor.service.XslTransformService;
 import org.dakhani.xsl.processor.util.ResourceUtils;
-import org.dakhani.xsl.transform.dto.request.TransformRequest;
-import org.dakhani.xsl.transform.dto.response.TransformResponse;
-import org.dakhani.xsl.transform.service.XslTransformService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,7 +32,7 @@ public class XslTransformServceImpl implements XslTransformService {
 			.getLogger(XslTransformServceImpl.class);
 
 	/**
-	 * @see org.dakhani.xsl.transform.service.XslTransformService#transformXml(org.dakhani.xsl.transform.dto.request.TransformRequest)
+	 * @see org.dakhani.xsl.processor.service.XslTransformService#transformXml(org.dakhani.xsl.processor.dto.request.TransformRequest)
 	 */
 	@Override
 	public TransformResponse transformXml(final TransformRequest request) {

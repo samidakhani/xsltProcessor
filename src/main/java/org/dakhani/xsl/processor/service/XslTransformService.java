@@ -1,9 +1,9 @@
-package org.dakhani.xsl.transform.service;
+package org.dakhani.xsl.processor.service;
 
 import javax.validation.constraints.NotNull;
 
-import org.dakhani.xsl.transform.dto.request.TransformRequest;
-import org.dakhani.xsl.transform.dto.response.TransformResponse;
+import org.dakhani.xsl.processor.dto.request.TransformRequest;
+import org.dakhani.xsl.processor.dto.response.TransformResponse;
 
 /**
  * @author Sami Dakhani Created on Dec 4, 2016

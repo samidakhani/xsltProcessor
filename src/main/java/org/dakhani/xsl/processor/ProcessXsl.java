@@ -1,10 +1,10 @@
 package org.dakhani.xsl.processor;
 
+import org.dakhani.xsl.processor.dto.request.TransformRequest;
+import org.dakhani.xsl.processor.dto.response.TransformResponse;
+import org.dakhani.xsl.processor.service.XslTransformService;
+import org.dakhani.xsl.processor.service.impl.XslTransformServceImpl;
 import org.dakhani.xsl.processor.util.ResourceUtils;
-import org.dakhani.xsl.transform.dto.request.TransformRequest;
-import org.dakhani.xsl.transform.dto.response.TransformResponse;
-import org.dakhani.xsl.transform.service.XslTransformService;
-import org.dakhani.xsl.transform.service.impl.XslTransformServceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,7 +19,7 @@ public class ProcessXsl {
 
 	public static void main(final String[] args) {
 
-		if (args.length != 4 || args.length != 6) {
+		if (args.length != 4 && args.length != 6) {
 			LOGGER.error(
 					"Please specify xml, xsl and result(optional) filepath arguments");
 			return;
@@ -43,10 +43,7 @@ public class ProcessXsl {
 		TransformResponse response = transform.transformXml(request);
 		String transformResult = response.getTransformResult();
 
-		if (!"-r".equals(args[4])) {
-			LOGGER.info("Transformation:");
-			LOGGER.info(transformResult);
-		} else {
+		if (args.length > 4) {
 
 			if (args.length != 6) {
 				LOGGER.error(
@@ -55,6 +52,10 @@ public class ProcessXsl {
 				String transformFileName = args[5];
 				ResourceUtils.writeResource(transformResult, transformFileName);
 			}
+
+		} else {
+			LOGGER.info("Transformation:");
+			LOGGER.info(transformResult);
 		}
 
 	}

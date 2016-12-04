@@ -1,4 +1,4 @@
-package org.dakhani.xsl.transform.dto.response;
+package org.dakhani.xsl.processor.dto.response;
 
 import javax.validation.constraints.NotNull;
 

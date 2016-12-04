@@ -1,4 +1,4 @@
-package org.dakhani.xsl.transform.dto.request;
+package org.dakhani.xsl.processor.dto.request;
 
 /**
  * @author Sami Dakhani Created on Dec 4, 2016
