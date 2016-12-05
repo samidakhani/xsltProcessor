@@ -1,5 +1,6 @@
 #XSLTProcessor
- 	Transforms a xml file into other format using xsl style-sheet as input. An alternate to using browsers for xsl-transformation.
+ 	Transforms a xml file into other format using xsl style-sheet as input. 
+ 	An alternate to using browsers for xsl-transformation.
  	
 # Motivation
    A need to transform an xml into other formats and to exclude the embedding of xsl style-sheet into the xml file.
@@ -13,7 +14,6 @@
    
 #Usage
    * You may now use **XSLTProcessor.jar** with the following command
-  
-	 java -jar XSLTProcessor.jar -xml <absolute_path_to_xmlFile> -xsl <absolute_path_to_xslFile> [-r <absolute_path_to_outputFile>]
+	java -jar XSLTProcessor.jar -xml <absolute_path_to_xmlFile> -xsl <absolute_path_to_xslFile> [-r <absolute_path_to_outputFile>]
 	 
     
