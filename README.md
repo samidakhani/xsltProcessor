@@ -3,7 +3,7 @@
  	
 # Motivation
    A need to transform an xml into other formats and to exclude the embedding of xsl style-sheet into the xml file.
-   Also, some browsers may not support xsl transformation.Hence, this project was undertaken.    
+   Also, some browsers may not support xsl transformation. 
    
 # Installation
    * Download the project 
@@ -18,9 +18,9 @@
    
 #Example
   * To generate the output in log file <br/>
-        java -jar XSLTProcessor.jar -xml C:/process.xml -xsl C:/proces.xsl
+        __java -jar XSLTProcessor.jar -xml C:/process.xml -xsl C:/proces.xsl__
    
   * To generate the output file <br/>
-  	    java -jar XSLTProcessor.jar -xml C:/process.xml -xsl C:/proces.xsl -r output.xml
+  	    __java -jar XSLTProcessor.jar -xml C:/process.xml -xsl C:/proces.xsl -r output.xml__
     
     
